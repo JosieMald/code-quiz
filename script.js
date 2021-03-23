@@ -2,80 +2,115 @@ var arrayOfQuestions = [
   {
     question: "Commonly used data types DO NOT include: ",
     answers: [
-      {text: "alerts", correct: true },
-      { text: "booleans", correct: false },
-      { text: "numbers", correct: false },
-      { text: "strings", correct: false },
-  ]
+       "a. alerts",
+       "b. booleans", 
+       "c. numbers", 
+       "d. strings", 
+  ], correct: "a. alerts",
   },
   
   {
       question: "The condition in an if / else statement is enclosed within _______.",
       answers: [
-          { text: "parantheses", correct: false },
-          { text: "qutoes", correct: false },
-          { text: "curly brackets", correct: true },
-          {text: "square brackets", correct: false },
-      ],
+           "a. parantheses", 
+           "b. qutoes", 
+           "c. curly brackets",
+           "d. square brackets", 
+      ], correct: "a. parantheses",
   },
 
   {
       question: "Arrays in Javascript can be used to store ___________.",
       answers: [ 
-          { text: "other arrays", correct: false },
-          { text: "numbers and strings", correct: false },
-          { text: "booleans", correct: false},
-          { text: "all of the above", correct: true },
+           "a. other arrays",
+           "b. numbers and strings",
+           "c. booleans", 
+           "d. all of the above",
 
-      ],
+      ], correct: "d. all of the above",
   },
 ];
 
 
 //DOM ELEMENTS
 var startButton = document.getElementById("start-button");
+// var startButton = $("#start-button").on("click", nameOfFunction)
 var countDownTimer = document.getElementById("timer");
 var keepScore = document.getElementById("score");
 var quizQuestions = document.getElementById("questions")
-var currentIndex = 0
+var currentIndex = 0;
+var questionEl = document.createElement("h1");
+// var questionEl = $("<h1>")
+var answersDiv = document.createElement("div");
+var timeLeft = 100;
+var numCorrect = [];
+
+function clock () {
+    countDownTimer.textContent = timeLeft;
+    timeLeft--;
+    if (timeLeft <= 0) {
+        timeLeft = 0
+    }
+}
+setInterval(clock, 1000);
 
 function displayQuestion() {
-    var questionEl = document.createElement("h1");
-    var currentQuestion=arrayOfQuestions[currentIndex]
+    var currentQuestion = arrayOfQuestions[currentIndex]
+    questionEl.innerHTML= "";
     questionEl.textContent = currentQuestion.question;
     quizQuestions.append(questionEl);
-    // console.log(questionEl);
 
-    var answersDiv = document.createElement("div");
+    answersDiv.innerHTML = "";
     
-    for (let i=0; i<currentQuestion.answers.length; i++){
+    for (var i = 0; i < currentQuestion.answers.length; i++){
         var answerBtn = document.createElement("button");
-        answerBtn.textContent = currentQuestion.answers[i].text;
+        answerBtn.textContent = currentQuestion.answers[i];
+        answerBtn.setAttribute("value", currentQuestion.answers[i]);
+
+        answerBtn.onclick = evaluateAnswer
         answersDiv.append(answerBtn);
     }
-
     quizQuestions.append(answersDiv);
-    // console.log(answersEl);
-}
 
+}
+function evaluateAnswer() {
+    console.log(this.value);
+    if (this.value !== arrayOfQuestions[currentIndex].correct) {
+        console.log("wrong")
+        timeLeft -= 10;
+        if (timeLeft <= 0) { 
+            timeLeft = 0;
+            console.log("Game Over");
+        }
+    } else {
+        console.log("right");
+        numCorrect.push(arrayOfQuestions[currentIndex]);
+        keepScore.textContent = numCorrect.length * 20;
+    }
+    currentIndex++;
+    if (currentIndex === arrayOfQuestions.length) {
+        console.log("end  game");
+    } else {
+        displayQuestion();
+    }
+}
 
 startButton.addEventListener("click", function () {
     console.log("You clicked the start button");
-    if (currentIndex < arrayOfQuestions.length) {
-        currentIndex++;
-    } else {
-        return;
-    }
+    // if (currentIndex < arrayOfQuestions.length) {
+    //     currentIndex++;
+    // } else {
+    //     return;
+    // }
     displayQuestion();
 }
 );
 
 
-// function startGame() {
-//   console.log("start the game");
+
   //start timer
   // startTimer()
   // hide the instuctions
   //hideInstructions()
-  //show the first questions
+
 
