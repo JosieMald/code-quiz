@@ -17,3 +17,7 @@ display: inline-block;
 float: right;
 margin: 0;
 }
+
+.flex-container {
+display: flex;
+}
