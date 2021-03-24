@@ -68,26 +68,24 @@ var answersDiv = document.createElement("Div");
 var startH1El = document.querySelector("h1");
 var startP = document.querySelector("p");
 var currentIndex = 0;
-var timeLeft = 100;
+var timeLeft = 60;
 var numCorrect = [];
+var timerClass;
 
-startButton.addEventListener("click", function (event) {
-    startButton.style.display = "none";
-    startH1El.style.display = "none";
-    startP.style.display = "none";
-    clock();
-}
-);
+// <-- Timer -->
 
 function clock () {
     countDownTimer.textContent = timeLeft;
-    timeLeft--;
-    if (timeLeft <= 0) {
-        timeLeft = 0
-    }
-    setInterval(clock, 1000);
+    timerClass = setInterval( function () {
+        timeLeft--;
+        if (timeLeft <= 0) {
+            timeLeft = 0
+        }
+    },1000);
     displayQuestion();
 }
+
+// <-- Question and Answer Display -->
 
 function displayQuestion() {
     var currentQuestion = arrayOfQuestions[currentIndex]
@@ -108,6 +106,9 @@ function displayQuestion() {
     quizQuestions.append(answersDiv);
     
 }
+
+// <-- Evaluate Correct Answer -->
+
 function evaluateAnswer() {
     console.log(this.value);
     if (this.value !== arrayOfQuestions[currentIndex].correct) {
@@ -130,14 +131,13 @@ function evaluateAnswer() {
     }
 }
 
-        
-        
-        // git commit: display none for start.
-        // fixed timer to begin when start clicked.
-        //start timer
-        // startTimer()
-        // hide the instuctions
-        //hideInstructions()
-        
-        
-        
+// <-- Start Button -->
+
+startButton.addEventListener("click", function (event) {
+    startButton.style.display = "none";
+    startH1El.style.display = "none";
+    startP.style.display = "none";
+    clock();
+}
+);
+
