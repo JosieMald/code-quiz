@@ -65,10 +65,19 @@ var keepScore = document.getElementById("score");
 var quizQuestions = document.getElementById("questions")
 var questionEl = document.createElement("h1");
 var answersDiv = document.createElement("Div");
+var startH1El = document.querySelector("h1");
+var startP = document.querySelector("p");
 var currentIndex = 0;
 var timeLeft = 100;
 var numCorrect = [];
 
+startButton.addEventListener("click", function (event) {
+    startButton.style.display = "none";
+    startH1El.style.display = "none";
+    startP.style.display = "none";
+    clock();
+}
+);
 
 function clock () {
     countDownTimer.textContent = timeLeft;
@@ -76,8 +85,9 @@ function clock () {
     if (timeLeft <= 0) {
         timeLeft = 0
     }
+    setInterval(clock, 1000);
+    displayQuestion();
 }
-setInterval(clock, 1000);
 
 function displayQuestion() {
     var currentQuestion = arrayOfQuestions[currentIndex]
@@ -120,15 +130,10 @@ function evaluateAnswer() {
     }
 }
 
-startButton.addEventListener("click", function (event) {
-    startButton.style.display = "none";
-    codingQuiz.style.display = "none";
-    displayQuestion();
-}
-);
         
         
-        
+        // git commit: display none for start.
+        // fixed timer to begin when start clicked.
         //start timer
         // startTimer()
         // hide the instuctions
