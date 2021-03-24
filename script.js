@@ -12,11 +12,11 @@ var arrayOfQuestions = [
   {
       question: "The condition in an if / else statement is enclosed within _______.",
       answers: [
-           "a. parantheses", 
-           "b. qutoes", 
-           "c. curly brackets",
-           "d. square brackets", 
-      ], correct: "a. parantheses",
+          "a. qutoes", 
+          "b. curly brackets",
+          "c. parantheses", 
+          "d. square brackets", 
+      ], correct: "c. parantheses",
   },
 
   {
@@ -26,9 +26,35 @@ var arrayOfQuestions = [
            "b. numbers and strings",
            "c. booleans", 
            "d. all of the above",
-
       ], correct: "d. all of the above",
   },
+  {
+      question: "What encompasses an array?",
+      answers: [
+          "a. ()",
+          "b. []",
+          "c. //",
+          "d. {}",
+      ], correct: "b. []",
+  },
+  {
+      question: "What does a Boolean return?",
+      answers: [
+          "a. true/false",
+          "b. 0",
+          "c. null ",
+          "d. undefined",
+      ], correct: "a. true/false",
+  },
+  {
+      question: "What number value does an Index start with",
+      answers: [
+          "a. 1",
+          "b. i",
+          "c. 0",
+          "d. -1",
+      ], correct: "c. 0",
+  }
 ];
 
 
@@ -41,9 +67,12 @@ var quizQuestions = document.getElementById("questions")
 var currentIndex = 0;
 var questionEl = document.createElement("h1");
 // var questionEl = $("<h1>")
-var answersDiv = document.createElement("div");
+var answersDiv = document.createElement("Div");
 var timeLeft = 100;
 var numCorrect = [];
+var main = document.querySelector("#main")
+main.style.backgroundcolor = "gray";
+
 
 function clock () {
     countDownTimer.textContent = timeLeft;
@@ -59,19 +88,19 @@ function displayQuestion() {
     questionEl.innerHTML= "";
     questionEl.textContent = currentQuestion.question;
     quizQuestions.append(questionEl);
-
+    
     answersDiv.innerHTML = "";
     
     for (var i = 0; i < currentQuestion.answers.length; i++){
         var answerBtn = document.createElement("button");
         answerBtn.textContent = currentQuestion.answers[i];
         answerBtn.setAttribute("value", currentQuestion.answers[i]);
-
+        
         answerBtn.onclick = evaluateAnswer
         answersDiv.append(answerBtn);
     }
     quizQuestions.append(answersDiv);
-
+    
 }
 function evaluateAnswer() {
     console.log(this.value);
@@ -85,7 +114,7 @@ function evaluateAnswer() {
     } else {
         console.log("right");
         numCorrect.push(arrayOfQuestions[currentIndex]);
-        keepScore.textContent = numCorrect.length * 20;
+        keepScore.textContent = numCorrect.length * 10;
     }
     currentIndex++;
     if (currentIndex === arrayOfQuestions.length) {
@@ -95,22 +124,17 @@ function evaluateAnswer() {
     }
 }
 
-startButton.addEventListener("click", function () {
-    console.log("You clicked the start button");
-    // if (currentIndex < arrayOfQuestions.length) {
-    //     currentIndex++;
-    // } else {
-    //     return;
-    // }
-    displayQuestion();
+startButton.addEventListener("click", function (event) {
 }
 );
-
-
-
-  //start timer
-  // startTimer()
-  // hide the instuctions
-  //hideInstructions()
-
-
+displayQuestion();
+        
+        
+        
+        //start timer
+        // startTimer()
+        // hide the instuctions
+        //hideInstructions()
+        
+        
+        
