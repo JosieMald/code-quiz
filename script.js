@@ -60,18 +60,14 @@ var arrayOfQuestions = [
 
 //DOM ELEMENTS
 var startButton = document.getElementById("start-button");
-// var startButton = $("#start-button").on("click", nameOfFunction)
 var countDownTimer = document.getElementById("timer");
 var keepScore = document.getElementById("score");
 var quizQuestions = document.getElementById("questions")
-var currentIndex = 0;
 var questionEl = document.createElement("h1");
-// var questionEl = $("<h1>")
 var answersDiv = document.createElement("Div");
+var currentIndex = 0;
 var timeLeft = 100;
 var numCorrect = [];
-var main = document.querySelector("#main")
-main.style.backgroundcolor = "gray";
 
 
 function clock () {
@@ -125,9 +121,11 @@ function evaluateAnswer() {
 }
 
 startButton.addEventListener("click", function (event) {
+    startButton.style.display = "none";
+    codingQuiz.style.display = "none";
+    displayQuestion();
 }
 );
-displayQuestion();
         
         
         
