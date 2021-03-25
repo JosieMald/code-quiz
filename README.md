@@ -1,17 +1,18 @@
 # Code-Quiz-Challenge
 
-## [Code Quiz]()
+## [Code Quiz](https://josiemald.github.io/code-quiz/)
 
-## [Repository](https://github.com/JosieMald/password-generator)
+## [Repository](https://github.com/JosieMald/code-quiz.git)
 
 ![Code Quiz Site!](assets/quiz-ss.png)
 
 ### Project:
 ```
-Client requests a site to randomly generate a password that meets certain criteria to create a strong password that provides greater security.
+AS A coding boot camp student create a timed quiz on JavaScript fundamentals that stores high scores
+so that I can gauge my progress compared to my peers.
 ```
 
 ### Description
 ```
-A password generator that asks for requirements of the users choice which include lowercase, uppercase, numeric, and/or special characters. Once all the requirements are met the user is given a secure password with the requirements they selected.
+created quiz that times your progress as you answer questions and keeps your score.
 ```
